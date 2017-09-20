@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 // ### DB CONNECTION ###
 
 // Connect to DB
-mongoose.connect("mongodb://localhost/blogapp1", {useMongoClient: true});
+mongoose.connect("mongodb://localhost/blogapp_v2", {useMongoClient: true});
 let db = mongoose.connection;
 
 // Check connection
@@ -58,13 +58,26 @@ app.post('/posts/new', (req, res) => {
     let image = req.body.image;
     let video = req.body.video;
     let content = req.body.content;
-    let newPost = {title: title, image: image, video: video, content: content};
+    let author = req.body.author;
+    let newPost = {title: title, image: image, video: video, content: content, author: author};
     Post.create(newPost, (err, addedPost) => {
         if (err) {
             console.log(err);
         }
         else {
             res.redirect('/');
+        }
+    });
+});
+
+// Show entire blog post
+app.get('/post/:id', (req, res) => {
+    Post.findById(req.params.id, (err, foundPost) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.render('showpost', {post: foundPost});
         }
     });
 });
