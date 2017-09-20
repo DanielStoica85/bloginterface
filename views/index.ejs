@@ -1,0 +1,13 @@
+<% include ./partials/header %>
+
+    <h1>Welcome to the Blog</h1>
+    
+    <ul>
+        <% posts.forEach(function(post) { %>
+            <li>
+                <%= post.title %> 
+            </li>
+        <% }); %>
+    </ul>
+    
+<% include ./partials/footer %>
