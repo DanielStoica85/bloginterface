@@ -14,6 +14,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
+// Set public folder
+app.use(express.static(__dirname + '/public'));
+
 // ### DB CONNECTION ###
 
 // Connect to DB
