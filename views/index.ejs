@@ -5,7 +5,9 @@
     <ul class = "list-group">
         <% posts.forEach(function(post) { %>
             <li class = "list-group-item">
-                <%= post.title %> 
+                <a href = "/post/<%= post._id %>">
+                    <%= post.title %> 
+                </a>
             </li>
         <% }); %>
     </ul>
