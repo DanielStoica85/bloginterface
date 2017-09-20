@@ -1,0 +1,20 @@
+{
+  "name": "bogdanblog",
+  "version": "1.0.0",
+  "description": "Video Tutorials Blog",
+  "main": "blogapp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "npm start": "node blogapp.js"
+  },
+  "keywords": [
+    "blog",
+    "node"
+  ],
+  "author": "Daniel Stoica",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.4",
+    "mongoose": "^4.11.12"
+  }
+}
