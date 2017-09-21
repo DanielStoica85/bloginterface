@@ -45,14 +45,19 @@ app.get('/', (req, res) => {
           console.log(err);
       }
       else {
-          res.render('index', {posts: allPosts});
+          res.render('home', {posts: allPosts});
       }
   });
 });
 
+// Admin Route
+app.get('/admin', (req, res) => {
+    res.render('admin/admin');
+});
+
 // Show form to add new Post
 app.get('/posts/new', (req, res) => {
-    res.render('new');
+    res.render('admin/new');
 });
 
 // Add new Post (after submitting form) route
