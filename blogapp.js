@@ -17,10 +17,16 @@ app.use(bodyParser.json());
 // Set public folder
 app.use(express.static(__dirname + '/public'));
 
+// middleware to send mela to every route
+app.use(function(req, res, next) {
+    res.locals.containsEditor = false;
+    next();
+});
+
 // ### DB CONNECTION ###
 
 // Connect to DB
-mongoose.connect("mongodb://localhost/blogapp_v2", {useMongoClient: true});
+mongoose.connect("mongodb://localhost/blogapp_v3", {useMongoClient: true});
 let db = mongoose.connection;
 
 // Check connection
@@ -52,22 +58,22 @@ app.get('/', (req, res) => {
 
 // Admin Route
 app.get('/admin', (req, res) => {
-    res.render('admin/admin');
+    res.render('admin/admin', {title: 'Blog Admin'});
 });
 
 // Show form to add new Post
 app.get('/posts/new', (req, res) => {
-    res.render('admin/new');
+    res.locals.containsEditor = true;
+    res.render('admin/new', {title: 'Add Post'});
 });
 
 // Add new Post (after submitting form) route
 app.post('/posts/new', (req, res) => {
     let title = req.body.title;
     let image = req.body.image;
-    let video = req.body.video;
     let content = req.body.content;
     let author = req.body.author;
-    let newPost = {title: title, image: image, video: video, content: content, author: author};
+    let newPost = {title: title, image: image, content: content, author: author};
     Post.create(newPost, (err, addedPost) => {
         if (err) {
             console.log(err);
@@ -88,6 +94,11 @@ app.get('/post/:id', (req, res) => {
             res.render('showpost', {post: foundPost});
         }
     });
+});
+
+// Show list of pages
+app.get('/pages', (req, res) => {
+    res.render('admin/pages', {title: 'Pages'});
 });
 
 app.listen(process.env.PORT, process.env.IP, () => {
