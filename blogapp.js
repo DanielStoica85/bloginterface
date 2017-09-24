@@ -122,6 +122,11 @@ app.get('/login', (req, res) => {
     res.render('admin/login', {title: 'Login'});
 });
 
+// Add user route
+app.get('/users/new', (req, res) => {
+    res.render('admin/newUser', {title: 'Add User'});
+});
+
 
 app.listen(process.env.PORT, process.env.IP, () => {
   console.log('Server started on port ' + process.env.PORT + '.');
