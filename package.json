@@ -1,7 +1,7 @@
 {
   "name": "bogdanblog",
   "version": "1.0.0",
-  "description": "Video Tutorials Blog",
+  "description": "Video Tutorials Blog Interface and Admin Panel",
   "main": "blogapp.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
