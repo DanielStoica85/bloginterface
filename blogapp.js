@@ -101,6 +101,12 @@ app.get('/pages', (req, res) => {
     res.render('admin/pages', {title: 'Pages'});
 });
 
+// Show list of pages
+app.get('/posts', (req, res) => {
+    res.render('admin/posts', {title: 'Posts'});
+});
+
+
 app.listen(process.env.PORT, process.env.IP, () => {
   console.log('Server started on port ' + process.env.PORT + '.');
 });

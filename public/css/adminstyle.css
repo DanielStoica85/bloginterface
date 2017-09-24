@@ -1,5 +1,10 @@
-body {
+* {
+    margin: 0;
+}
+
+html, body {
     background: #f4f4f4;
+    height: 100%;
 }
 
 /*NAVBAR*/
@@ -132,16 +137,34 @@ body {
     margin-right: 10px;
 }
 
-/* FOOTER */
-#footer{
-  background:#333333;
-  color:#ffffff;
-  height: 70px;
-  text-align:center;
-  padding:30px;
-  margin-top:30px;
+#searchinput {
+    margin-bottom: 25px;
 }
 
+/*For keeping footer stuck to bottom:*/
+
+.page-wrap {
+    min-height: 100%;
+    /* equal to footer height */
+    margin-bottom: -100px; 
+}
+
+.page-wrap:after {
+    content: "";
+    display: block;
+}
+
+/* FOOTER */
+#footer {
+    position: absolute;
+    background: #333333;
+    color: #ffffff;
+    height: 70px;
+    text-align: center;
+    padding: 30px;
+    margin-top: 30px;
+    width: 100%;
+}
 
 @media (max-width: 767px) {
     .navbar-default .navbar-nav .open .dropdown-menu>li>a {
