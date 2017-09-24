@@ -64,7 +64,7 @@ app.get('/admin', (req, res) => {
 // Show form to add new Post
 app.get('/posts/new', (req, res) => {
     res.locals.containsEditor = true;
-    res.render('admin/new', {title: 'Add Post'});
+    res.render('admin/newPost', {title: 'Add Post'});
 });
 
 // Add new Post (after submitting form) route
@@ -82,6 +82,12 @@ app.post('/posts/new', (req, res) => {
             res.redirect('/');
         }
     });
+});
+
+// Show form to add new Post
+app.get('/pages/new', (req, res) => {
+    res.locals.containsEditor = true;
+    res.render('admin/newPage', {title: 'Add Post'});
 });
 
 // Show entire blog post
@@ -104,6 +110,16 @@ app.get('/pages', (req, res) => {
 // Show list of pages
 app.get('/posts', (req, res) => {
     res.render('admin/posts', {title: 'Posts'});
+});
+
+// Show list of users
+app.get('/users', (req, res) => {
+    res.render('admin/users', {title: 'Users'});
+});
+
+// Show login form
+app.get('/login', (req, res) => {
+    res.render('admin/login', {title: 'Login'});
 });
 
 

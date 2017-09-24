@@ -1,8 +1,4 @@
-* {
-    margin: 0;
-}
-
-html, body {
+body {
     background: #f4f4f4;
     height: 100%;
 }
@@ -141,18 +137,11 @@ html, body {
     margin-bottom: 25px;
 }
 
-/*For keeping footer stuck to bottom:*/
-
-.page-wrap {
-    min-height: 100%;
-    /* equal to footer height */
-    margin-bottom: -100px; 
+#loginForm {
+    margin-bottom: 50px;
+    margin-top: 20px;
 }
 
-.page-wrap:after {
-    content: "";
-    display: block;
-}
 
 /* FOOTER */
 #footer {
