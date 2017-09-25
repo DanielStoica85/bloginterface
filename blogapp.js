@@ -26,10 +26,10 @@ app.use(function(req, res, next) {
 // ### DB CONNECTION ###
 
 // Connect to DB
-mongoose.connect("mongodb://localhost/blogapp_v3", {useMongoClient: true});
+mongoose.connect("process.env.MONGODB_URI" || "mongodb://localhost/blogapp_v4", {useMongoClient: true});
 let db = mongoose.connection;
 
-// Check connection
+// Check DB connection
 db.once('open', () => {
     console.log('Connected to MongoDB.');
 });
