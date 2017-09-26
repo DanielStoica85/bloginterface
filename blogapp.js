@@ -31,14 +31,13 @@ let db = mongoose.connection;
 
 // Check DB connection
 db.once('open', () => {
-    console.log('Connected to MongoDB.');
+    console.log('Connected to MongoDB: ' + process.env.MONGODB_URI);
 });
 
 // Check for DB errors
 db.on('error', (err) => {
     console.log('Error connecting to database: ');
     console.log(err);
-    console.log(process.env.MONGODB_URI);
 });
 
 // Set Ejs as view engine
