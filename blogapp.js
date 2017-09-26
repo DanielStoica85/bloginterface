@@ -26,7 +26,7 @@ app.use(function(req, res, next) {
 // ### DB CONNECTION ###
 
 // Connect to DB
-mongoose.connect("process.env.MONGODB_URI" || "mongodb://localhost/blogapp_v4", {useMongoClient: true});
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/blogapp_v4", {useMongoClient: true});
 let db = mongoose.connection;
 
 // Check DB connection
@@ -36,7 +36,9 @@ db.once('open', () => {
 
 // Check for DB errors
 db.on('error', (err) => {
+    console.log('Error connecting to database: ');
     console.log(err);
+    console.log(process.env.MONGODB_URI);
 });
 
 // Set Ejs as view engine
