@@ -12,6 +12,58 @@ body {
    overflow-x: hidden;
 }
 
+/*SIDENAV*/
+
+.glyphicon-menu-hamburger {
+   position: fixed;
+   z-index: 2;
+   top: 25px;
+   right: 25px;
+   font-size: 36px;
+
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    text-align:center;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+
+}
+
+.sidenav a:hover{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 5px;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 150px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
 .v-header {
    height: 75vh;
    display: flex;
@@ -85,13 +137,14 @@ body {
 .parallax {
    /* The image used */
    background-image: url('/img/teach.jpg');
-   height: 70vh;
+   height: 75vh;
 
    /* Create the parallax scrolling effect */
    background-attachment: fixed;
    background-position: center;
    background-repeat: no-repeat;
    background-size: cover;
+   text-align: center;
 }
 
  /* Turn off parallax scrolling for tablets and phones. Increase/decrease the pixels if needed */
@@ -100,6 +153,8 @@ body {
         background-attachment: scroll;
     }
 } 
+
+
 
 /*MAIN CONTENT*/
 
