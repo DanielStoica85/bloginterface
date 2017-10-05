@@ -31,7 +31,7 @@ let db = mongoose.connection;
 
 // Check DB connection
 db.once('open', () => {
-    console.log('Connected to MongoDB: ' + process.env.MONGODB_URI);
+    console.log('Connected to MongoDB.');
 });
 
 // Check for DB errors
@@ -52,7 +52,7 @@ app.get('/', (req, res) => {
           console.log(err);
       }
       else {
-          res.render('home', {posts: allPosts});
+          res.render('frontend/home', {posts: allPosts, title: 'Tutorials Blog - Home'});
       }
   });
 });
@@ -104,22 +104,22 @@ app.get('/post/:id', (req, res) => {
 });
 
 // Show list of pages
-app.get('/pages', (req, res) => {
-    res.render('admin/pages', {title: 'Pages'});
+app.get('/admin/pages', (req, res) => {
+    res.render('admin/pages', {title: 'Pages', page: 'pages'});
 });
 
 // Show list of pages
-app.get('/posts', (req, res) => {
+app.get('/admin/posts', (req, res) => {
     res.render('admin/posts', {title: 'Posts'});
 });
 
 // Show list of users
-app.get('/users', (req, res) => {
+app.get('/admin/users', (req, res) => {
     res.render('admin/users', {title: 'Users'});
 });
 
 // Show login form
-app.get('/login', (req, res) => {
+app.get('/admin/login', (req, res) => {
     res.render('admin/login', {title: 'Login'});
 });
 
@@ -127,7 +127,6 @@ app.get('/login', (req, res) => {
 app.get('/users/new', (req, res) => {
     res.render('admin/newUser', {title: 'Add User'});
 });
-
 
 app.listen(process.env.PORT, process.env.IP, () => {
   console.log('Server started on port ' + process.env.PORT + '.');
