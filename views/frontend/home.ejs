@@ -1,0 +1,18 @@
+<% include ./partials/headerv %>
+    
+    <ul class = "list-group">
+        <% posts.forEach(function(post) { %>
+            <li class = "list-group-item">
+                <a href = "/post/<%= post._id %>">
+                    <%= post.title %> 
+                </a>
+            </li>
+        <% }); %>
+    </ul>
+
+    
+    <!--<form action = "admin/login" method = "GET" >-->
+    <!--    <button class = "btn btn-lg btn-primary">Login</button>-->
+    <!--</form>-->
+    
+  <% include ./partials/footer %>  
