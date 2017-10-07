@@ -98,7 +98,7 @@ app.get('/post/:id', (req, res) => {
             console.log(err);
         }
         else {
-            res.render('showpost', {post: foundPost});
+            res.render('frontend/showpost', {post: foundPost, title: 'Demo Postshow'});
         }
     });
 });

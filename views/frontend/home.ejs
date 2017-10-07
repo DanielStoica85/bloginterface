@@ -1,18 +1,97 @@
 <% include ./partials/header %>
-    
-    <ul class = "list-group">
-        <% posts.forEach(function(post) { %>
-            <li class = "list-group-item">
-                <a href = "/post/<%= post._id %>">
-                    <%= post.title %> 
-                </a>
-            </li>
-        <% }); %>
-    </ul>
 
-    
+    <!--<ul class = "list-group">-->
+    <!--    <% posts.forEach(function(post) { %>-->
+    <!--        <li class = "list-group-item">-->
+    <!--            <a href = "/post/<%= post._id %>">-->
+    <!--                <%= post.title %> -->
+    <!--            </a>-->
+    <!--        </li>-->
+    <!--    <% }); %>-->
+    <!--</ul>-->
+
+
     <!--<form action = "admin/login" method = "GET" >-->
     <!--    <button class = "btn btn-lg btn-primary">Login</button>-->
     <!--</form>-->
-    
-  <% include ./partials/footer %>  
+
+    <section id="main">
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <section id="posts" class="col-md-9 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <article class="col-md-10 col-md-offset-1 postPreview">
+                            <h1>How to change calendar data</h1>
+                            <p class="lead" id="postInfo">
+                                <i class="fa fa-user"></i> Posted by <span id="author">Bogdan Gersak</span>
+                                <span class="pull-right"><i class="fa fa-calendar"></i> August 24, 2017</span>
+                            </p>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima suscipit, exercitationem dicta. Fugit facere quia molestiae autem ipsam laborum natus ullam adipisci eligendi commodi, aperiam alias in laudantium voluptas reiciendis
+                                provident, quasi reprehenderit atque neque eos a culpa, minus beatae necessitatibus. Impedit cupiditate facilis cumque ipsam numquam dolore error itaque officia quae, hic at rem quas veniam quasi nemo commodi, beatae consectetur
+                                minima, possimus quo provident. A quam ad pariatur accusantium enim laborum sapiente! Sit debitis consectetur ducimus, quisquam dolor nulla? Rerum, quis totam reiciendis animi ullam numquam sunt. Eum blanditiis assumenda
+                                fugit ipsam provident perferendis necessitatibus magni porro non!</p>
+                            <a href="#" class="btn btn-lg">Read more...</a>
+                        </article>
+
+                        <article class="col-md-10 col-md-offset-1 postPreview">
+                            <h1>How to change calendar data</h1>
+                            <p class="lead" id="postInfo">
+                                <i class="fa fa-user"></i> Posted by <span id="author">Bogdan Gersak</span>
+                                <span class="pull-right"><i class="fa fa-calendar"></i> August 24, 2017</span>
+                            </p>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima suscipit, exercitationem dicta. Fugit facere quia molestiae autem ipsam laborum natus ullam adipisci eligendi commodi, aperiam alias in laudantium voluptas reiciendis
+                                provident, quasi reprehenderit atque neque eos a culpa, minus beatae necessitatibus. Impedit cupiditate facilis cumque ipsam numquam dolore error itaque officia quae, hic at rem quas veniam quasi nemo commodi, beatae consectetur
+                                minima, possimus quo provident. A quam ad pariatur accusantium enim laborum sapiente! Sit debitis consectetur ducimus, quisquam dolor nulla? Rerum, quis totam reiciendis animi ullam numquam sunt. Eum blanditiis assumenda
+                                fugit ipsam provident perferendis necessitatibus magni porro non!</p>
+                            <a href="#" class="btn btn-lg">Read more...</a>
+                        </article>
+                        
+                                                <article class="col-md-10 col-md-offset-1 postPreview">
+                            <h1>How to change calendar data</h1>
+                            <p class="lead" id = "postInfo">
+                                <i class="fa fa-user"></i>
+                                Posted by <span id = "author">Bogdan Gersak</span>
+                                <span class = "pull-right"><i class="fa fa-calendar"></i> August 24, 2017</span>
+                            </p>
+                            
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima suscipit, exercitationem dicta. Fugit facere quia molestiae autem ipsam laborum natus ullam adipisci eligendi commodi, aperiam alias in laudantium voluptas reiciendis provident, quasi reprehenderit atque neque eos a culpa, minus beatae necessitatibus. Impedit cupiditate facilis cumque ipsam numquam dolore error itaque officia quae, hic at rem quas veniam quasi nemo commodi, beatae consectetur minima, possimus quo provident. A quam ad pariatur accusantium enim laborum sapiente! Sit debitis consectetur ducimus, quisquam dolor nulla? Rerum, quis totam reiciendis animi ullam numquam sunt. Eum blanditiis assumenda fugit ipsam provident perferendis necessitatibus magni porro non!</p>
+                                <a href="#" class="btn btn-lg">Read more...</a>
+                        </article>
+
+                    </div>
+                </section>
+
+                <section id="sidebar" class="col-md-3 col-sm-12 col-xs-12">
+                    
+                <div class="row">
+                    <!--Blog search-->
+                    <div class="well" id = "searchbox">
+                        <h4><i class="fa fa-search"></i> Blog Search...</h4>
+                        <div class="input-group" id = "searchForm">
+                            <input type="text" class="form-control" name="search" id = "searchInput">
+                            <span class="input-group-bt">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                    <!--End of blog search-->
+                </div>
+                    
+                </section>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+    <% include ./partials/footer %>
