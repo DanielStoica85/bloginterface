@@ -13,14 +13,14 @@
                     
                     <!--Add Post section-->
                     
-                    <form action = '/campgrounds' method = 'POST'>
+                    <form action = '/' method = 'POST'>
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input class = "form-control" type = "text" name = "title" placeholder = "Insert title here..."></input>
+                            <input class = "form-control" type = "text" name = "title" placeholder = "Insert title here..." required></input>
                         </div>
                         <div class="form-group">
                             <label for="content">Main Image</label>
-                            <input class = "form-control" type = "text" name = "image" placeholder = "Insert image url here..."></input>
+                            <input class = "form-control" type = "text" name = "image" placeholder = "Insert image url here..." required></input>
                         </div>
                         <div class="form-group">
                             <label for="content">Content</label>
@@ -28,7 +28,7 @@
                         </div>
                         <div class="form-group">
                             <label for="content">Categories</label>
-                            <textarea name = "categories" class = "form-control" placeholder = "Insert categories here, one on each line..."></textarea>
+                            <textarea name = "category" class = "form-control" placeholder = "Insert categories here, one on each line..." required></textarea>
                         </div>
 
                         <div class="form-group">

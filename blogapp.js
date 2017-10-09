@@ -26,7 +26,7 @@ app.use(function(req, res, next) {
 // ### DB CONNECTION ###
 
 // Connect to DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/blogapp_v4", {useMongoClient: true});
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/blogapp_v1", {useMongoClient: true});
 let db = mongoose.connection;
 
 // Check DB connection
@@ -69,12 +69,15 @@ app.get('/posts/new', (req, res) => {
 });
 
 // Add new Post (after submitting form) route
-app.post('/posts/new', (req, res) => {
+app.post('/', (req, res) => {
+    console.log(req.body);
+    console.log(req.body.category);
     let title = req.body.title;
     let image = req.body.image;
     let content = req.body.content;
     let author = req.body.author;
-    let newPost = {title: title, image: image, content: content, author: author};
+    let category = req.body.category;
+    let newPost = {title: title, image: image, content: content, author: author, category: category};
     Post.create(newPost, (err, addedPost) => {
         if (err) {
             console.log(err);
@@ -99,6 +102,7 @@ app.get('/post/:id', (req, res) => {
         }
         else {
             res.render('frontend/showpost', {post: foundPost, title: 'Demo Postshow'});
+            console.log(foundPost);
         }
     });
 });

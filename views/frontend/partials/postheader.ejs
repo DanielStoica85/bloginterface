@@ -10,16 +10,16 @@
     <link rel="stylesheet" href="/css/festyle.css"></link>
 
     <title>
-        <%= title %>
+        <%= post.title %>
     </title>
 </head>
 
 <body>
 
-    <header class="v-header parallax" id = "postheader">
+    <header class="v-header parallax" id = "postheader" style = "background-image: url(<%= post.image %>)">
         
         <a id = "logo" href = "/">
-            <img src="/img/logo.png"></img>
+            <img src="/img/logo.png" alt = "Post Image"></img>
         </a>
         
         <span class = "glyphicon glyphicon-menu-hamburger" onclick="openNav()"></span>
@@ -35,7 +35,7 @@
         <div class="header-content">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>HOW TO CHANGE CALENDAR DATA</h1>
+                    <h1> <%= post.title %></h1>
                 </div>
             </div>
         </div>

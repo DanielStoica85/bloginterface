@@ -23,45 +23,22 @@
 
                 <section id="posts" class="col-md-9 col-sm-12 col-xs-12">
                     <div class="row">
-                        <article class="col-md-10 col-md-offset-1 postPreview">
-                            <h1>How to change calendar data</h1>
-                            <p class="lead" id="postInfo">
-                                <i class="fa fa-user"></i> Posted by <span id="author">Bogdan Gersak</span>
-                                <span class="pull-right"><i class="fa fa-calendar"></i> August 24, 2017</span>
-                            </p>
 
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima suscipit, exercitationem dicta. Fugit facere quia molestiae autem ipsam laborum natus ullam adipisci eligendi commodi, aperiam alias in laudantium voluptas reiciendis
-                                provident, quasi reprehenderit atque neque eos a culpa, minus beatae necessitatibus. Impedit cupiditate facilis cumque ipsam numquam dolore error itaque officia quae, hic at rem quas veniam quasi nemo commodi, beatae consectetur
-                                minima, possimus quo provident. A quam ad pariatur accusantium enim laborum sapiente! Sit debitis consectetur ducimus, quisquam dolor nulla? Rerum, quis totam reiciendis animi ullam numquam sunt. Eum blanditiis assumenda
-                                fugit ipsam provident perferendis necessitatibus magni porro non!</p>
-                            <a href="#" class="btn btn-lg">Read more...</a>
-                        </article>
-
-                        <article class="col-md-10 col-md-offset-1 postPreview">
-                            <h1>How to change calendar data</h1>
-                            <p class="lead" id="postInfo">
-                                <i class="fa fa-user"></i> Posted by <span id="author">Bogdan Gersak</span>
-                                <span class="pull-right"><i class="fa fa-calendar"></i> August 24, 2017</span>
-                            </p>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima suscipit, exercitationem dicta. Fugit facere quia molestiae autem ipsam laborum natus ullam adipisci eligendi commodi, aperiam alias in laudantium voluptas reiciendis
-                                provident, quasi reprehenderit atque neque eos a culpa, minus beatae necessitatibus. Impedit cupiditate facilis cumque ipsam numquam dolore error itaque officia quae, hic at rem quas veniam quasi nemo commodi, beatae consectetur
-                                minima, possimus quo provident. A quam ad pariatur accusantium enim laborum sapiente! Sit debitis consectetur ducimus, quisquam dolor nulla? Rerum, quis totam reiciendis animi ullam numquam sunt. Eum blanditiis assumenda
-                                fugit ipsam provident perferendis necessitatibus magni porro non!</p>
-                            <a href="#" class="btn btn-lg">Read more...</a>
-                        </article>
+                        <% posts.forEach(function(post) { %>
                         
-                                                <article class="col-md-10 col-md-offset-1 postPreview">
-                            <h1>How to change calendar data</h1>
-                            <p class="lead" id = "postInfo">
-                                <i class="fa fa-user"></i>
-                                Posted by <span id = "author">Bogdan Gersak</span>
-                                <span class = "pull-right"><i class="fa fa-calendar"></i> August 24, 2017</span>
-                            </p>
-                            
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima suscipit, exercitationem dicta. Fugit facere quia molestiae autem ipsam laborum natus ullam adipisci eligendi commodi, aperiam alias in laudantium voluptas reiciendis provident, quasi reprehenderit atque neque eos a culpa, minus beatae necessitatibus. Impedit cupiditate facilis cumque ipsam numquam dolore error itaque officia quae, hic at rem quas veniam quasi nemo commodi, beatae consectetur minima, possimus quo provident. A quam ad pariatur accusantium enim laborum sapiente! Sit debitis consectetur ducimus, quisquam dolor nulla? Rerum, quis totam reiciendis animi ullam numquam sunt. Eum blanditiis assumenda fugit ipsam provident perferendis necessitatibus magni porro non!</p>
-                                <a href="#" class="btn btn-lg">Read more...</a>
-                        </article>
+                            <article class="col-md-10 col-md-offset-1 postPreview">
+                                
+                                <h1><%= post.title %></h1>
+                                <p class="lead">
+                                    <i class="fa fa-user"></i> Posted by <span id="author"><%= post.author %></span>
+                                    <span class="pull-right"><i class="fa fa-calendar"></i> August 24, 2017</span>
+                                </p>
+                                <p><%- post.content.substring(0, 500) %></p>
+                                <a href = "/post/<%= post._id %>" class = "btn btn-lg">Read more...</a>
+                                
+                            </article>
+                        
+                        <% }); %>
 
                     </div>
                 </section>

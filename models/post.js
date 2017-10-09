@@ -4,11 +4,11 @@ let Schema = mongoose.Schema;
 // BLOG POST SCHEMA
 
 let postSchema = new Schema({
-    title: {type: String, required: true},
-    image: {type: String, required: true},
-    video: {type: String, required: true},
-    content: {type: String, required: true},
-    author: {type: String, required: true}
+    title: String,
+    image: String,
+    content: String,
+    category: String,
+    author: {type: String, default: 'Daniel'}
 });
 
 module.exports = mongoose.model("Post", postSchema);
