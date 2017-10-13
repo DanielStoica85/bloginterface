@@ -4,6 +4,24 @@ body {
     margin-bottom: 70px;
 }
 
+.btn {
+    box-shadow: 1px 2px 5px #000000;
+}
+
+.btn:hover { 
+    -webkit-transform: scale(1.05); 
+    -moz-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+}
+
+.navbar a:hover {
+    -webkit-transform: scale(1.1); 
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+}
+
 /*NAVBAR*/
 
 .navbar {
@@ -128,6 +146,8 @@ body {
 
 .stats-well {
     text-align: center;
+    background-color: #337ab7;
+    color: #fff;
 }
 
 .btn-sm {
