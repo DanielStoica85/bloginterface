@@ -44,26 +44,21 @@
                                     <th>Created</th>
                                     <th>Action</th>
                                 </tr>
-                                <tr>
-                                    <td>Post number one</td>
-                                    <td>Post number one content which might be very long, so how do we display this content?</td>
-                                    <td>Dec 12, 2016</td>
-                                    <td class = "actions">
-                                        <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                                    </td>
-                                </tr>
-                                <tr>
+                                
+                                <% posts.forEach(function(post) { %>
+                                
                                     <tr>
-                                        <td>Post number two</td>
-                                        <td>Post number one content which might be very long, so how do we display this content?</td>
-                                        <td>Dec 12, 2016</td>
+                                        <td><%= post.title %></td>
+                                        <td><%- post.content.substring(0, 200) %></td>
+                                        <td>October 15, 2017</td>
                                         <td class = "actions">
-                                            <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                            <a href = "/post/edit/<%= post._id %>"><button type="button" class="btn btn-primary btn-sm">Edit</button></a>
                                             <button type="button" class="btn btn-danger btn-sm">Delete</button>
                                         </td>
                                     </tr>
-                                    <tr>
+                                
+                                <% }); %>
+                                
                             </table>
                         </div>
                     </div>

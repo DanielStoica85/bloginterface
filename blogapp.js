@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 // Import Models
 let Post = require('./models/post');
 
@@ -13,6 +14,8 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
+
+app.use(methodOverride("_method"));
 
 // Set public folder
 app.use(express.static(__dirname + '/public'));
@@ -67,9 +70,9 @@ app.get('/admin', (req, res) => {
 
 // Show form to add new Post
 app.get('/posts/new', (req, res) => {
-    res.locals.containsEditor = true;
+    // res.locals.containsEditor = true;
     Post.getAll((allPosts) => {
-        res.render('admin/newPost', { title: 'Add Post', posts: allPosts });
+        res.render('admin/newPost', { title: 'Add Post', posts: allPosts, containsEditor: true });
     });
 });
 
@@ -103,6 +106,42 @@ app.get('/post/:id', (req, res) => {
         }
         else {
             res.render('frontend/showpost', { post: foundPost, title: 'Demo Postshow' });
+        }
+    });
+});
+
+// Load form for editing post
+app.get('/post/edit/:id', (req, res) => {
+    Post.getAll((allPosts) => {    
+        Post.findById(req.params.id, (err, foundPost) => {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                res.render('admin/editPost', { post: foundPost, 
+                    posts: allPosts, 
+                    containsEditor: true, 
+                    title: 'Edit Post' });
+            }
+        });
+    });
+});
+
+// Update Post (after submitting form) route
+app.put('/post/:id', (req, res) => {
+    let title = req.body.title;
+    let image = req.body.image;
+    let content = req.body.content;
+    let author = req.body.author;
+    let category = req.body.category;
+    let newPost = { title: title, image: image, content: content, author: author, category: category };
+    console.log(req.params.id);
+    Post.findByIdAndUpdate(req.params.id, newPost, (err, updatedPost) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.redirect('/post/' + req.params.id);
         }
     });
 });

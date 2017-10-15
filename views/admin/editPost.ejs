@@ -1,0 +1,61 @@
+<% include ./partials/header %>
+
+    <section id="main">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-3">
+                    <% include ./partials/stats %>
+                </div>
+                <!-- end of col-md-3 SIDEBAR -->
+
+                <div class="col-md-9">
+
+                    <!--Add Post section-->
+
+                    <form action='/post/<%= post._id%>?_method=PUT' method='POST'>
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input class="form-control" type="text" name="title" value="<%= post.title%>" required></input>
+                        </div>
+                        <div class="form-group">
+                            <label for="content">Main Image</label>
+                            <input class="form-control" type="text" name="image" value="<%= post.image%>" required></input>
+                        </div>
+                        <div class="form-group">
+                            <label for="content">Content</label>
+                            <textarea name="content" class="form-control" required><%= post.content%></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="content">Categories</label>
+                            <textarea name="category" class="form-control" required><%= post.category%></textarea>
+                        </div>
+
+                        <div class="form-group newPostButton">
+                            <button class="btn btn-md btn-primary" formaction="/testPage1">Preview Post</button>
+                        </div>
+                        <div class="form-group newPostButton">
+                            <button class="btn btn-md btn-success" formaction="/testPage2">Save Post</button>
+                        </div>
+                        <div class="form-group newPostButton">
+                            <button class="btn btn-md btn-danger">Publish Post</button>
+                        </div>
+
+                    </form>
+
+                    <!--End of Add Post section-->
+
+                </div>
+
+            </div>
+            <!-- end of row -->
+        </div>
+        <!-- end of main container -->
+    </section>
+    <!-- end of #main section -->
+
+    <script>
+        CKEDITOR.replace('content');
+    </script>
+
+    <% include ./partials/footer %>
