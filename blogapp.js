@@ -112,9 +112,17 @@ app.get('/admin/pages', (req, res) => {
     res.render('admin/pages', { title: 'Pages', page: 'pages' });
 });
 
-// Show list of pages
-app.get('/admin/posts', (req, res) => {
-    res.render('admin/posts', { title: 'Posts' });
+// Show list of posts
+app.get('/posts', (req, res) => {
+    Post.find({}, (err, allPosts) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(allPosts.length);
+            res.render('admin/posts', { title: 'Posts', posts: allPosts });
+        }
+    });
 });
 
 // Show list of users

@@ -10,17 +10,17 @@
                 <!-- end of col-md-3 SIDEBAR -->
 
                 <div class="col-md-9">
-                    
+
                     <!--Add Post section-->
-                    
-                    <form action = '/' method = 'POST'>
+
+                    <form action='/' method='POST'>
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input class = "form-control" type = "text" name = "title" placeholder = "Insert title here..." required></input>
+                            <input class="form-control" type="text" name="title" placeholder="Insert title here..." required></input>
                         </div>
                         <div class="form-group">
                             <label for="content">Main Image</label>
-                            <input class = "form-control" type = "text" name = "image" placeholder = "Insert image url here..." required></input>
+                            <input class="form-control" type="text" name="image" placeholder="Insert image url here..." required></input>
                         </div>
                         <div class="form-group">
                             <label for="content">Content</label>
@@ -28,17 +28,23 @@
                         </div>
                         <div class="form-group">
                             <label for="content">Categories</label>
-                            <textarea name = "category" class = "form-control" placeholder = "Insert categories here, one on each line..." required></textarea>
+                            <textarea name="category" class="form-control" placeholder="Insert categories here, one on each line..." required></textarea>
                         </div>
 
-                        <div class="form-group">
-                            <button class = "btn btn-lg btn-primary">Publish Post</button>
+                        <div class="form-group newPostButton">
+                            <button class="btn btn-md btn-primary" formaction="/testPage1">Preview Post</button>
                         </div>
-                        
+                        <div class="form-group newPostButton">
+                            <button class="btn btn-md btn-success" formaction="/testPage2">Save Post</button>
+                        </div>
+                        <div class="form-group newPostButton">
+                            <button class="btn btn-md btn-danger">Publish Post</button>
+                        </div>
+
                     </form>
-                    
+
                     <!--End of Add Post section-->
-                    
+
                 </div>
 
             </div>
@@ -47,9 +53,9 @@
         <!-- end of main container -->
     </section>
     <!-- end of #main section -->
-    
+
     <script>
-       CKEDITOR.replace( 'content' );
+        CKEDITOR.replace('content');
     </script>
 
     <% include ./partials/footer %>
