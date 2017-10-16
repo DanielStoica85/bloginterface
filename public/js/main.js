@@ -26,7 +26,7 @@ function toggleSearchDisplay() {
     }
 }
 
-function filterTableContent() {
+function filterTableContentByTitle() {
 
     var filter, table, tr, td, i;
     filter = searchInput.value.toUpperCase();
@@ -45,5 +45,7 @@ function filterTableContent() {
             }
         }
     }
-
+    
 }
+
+
