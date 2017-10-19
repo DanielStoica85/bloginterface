@@ -1,3 +1,5 @@
+/* global $ */
+
 /* Open the sidenav */
 function openNav() {
     document.getElementById("mySidenav").style.width = "100vw";
@@ -48,4 +50,18 @@ function filterTableContentByTitle() {
     
 }
 
-
+$('.delete-post').on('click', function(e) {
+    $target = $(e.target);
+    var id = $target.attr('data-id');
+    $.ajax({
+        type: 'DELETE',
+        url: '/post/delete/' + id,
+        success: function(response) {
+            console.log(response);
+            window.location = "/posts";
+        },
+        error: function(err) {
+            console.log(err);
+        }
+    });
+});

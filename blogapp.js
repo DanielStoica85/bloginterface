@@ -146,6 +146,21 @@ app.put('/post/:id', (req, res) => {
     });
 });
 
+// Delete blog post route 
+app.delete('/post/delete/:id', (req, res) => {
+    Post.findByIdAndRemove(req.params.id, (err) => {
+        if (err) {
+            console.log('Post not deleted!');
+            console.log(err);
+        }
+        else {
+            console.log('Post with id ' + req.params.id + ' deleted!');
+            res.send();
+        }
+    });
+});
+
+
 // Show list of pages
 app.get('/admin/pages', (req, res) => {
     res.render('admin/pages', { title: 'Pages', page: 'pages' });
