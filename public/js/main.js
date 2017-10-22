@@ -66,4 +66,3 @@ $('.delete-post').on('click', function(e) {
         }
     });
 });
-

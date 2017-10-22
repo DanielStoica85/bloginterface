@@ -182,15 +182,13 @@ app.put('/post/:id', (req, res) => {
     var errors = req.validationErrors();
     
     if (errors) {
-        console.log(req.params);
-        console.log(req.body);
         Post.getAll((allPosts) => {
             Post.findById(req.params.id, (err, foundPost) => {
                 if (err) {
                     console.log(err);
                 }
                 else {
-                   res.render('admin/editPost', {post: foundPost, errors: errors, partialPost: req.body, posts: allPosts, title: 'Edit Post', containsEditor: true});
+                    res.render('admin/editPost', {post: foundPost, errors: errors, partialPost: req.body, posts: allPosts, title: 'Edit Post', containsEditor: true});
                 }
             });    
         });
