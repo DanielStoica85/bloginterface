@@ -58,10 +58,12 @@ $('.delete-post').on('click', function(e) {
         url: '/post/delete/' + id,
         success: function(response) {
             console.log(response);
-            window.location = "/posts";
+            $target.closest('tr').remove();
+            $('#messages').html('<div class = "alert alert-success">' + response.message + '</div>');
         },
         error: function(err) {
             console.log(err);
         }
     });
 });
+

@@ -12,23 +12,46 @@
                 <div class="col-md-9">
 
                     <!--Add Post section-->
-
-                    <form action='/' method='POST'>
+                    
+                    <% if (locals.errors) { %>
+                        <% errors.forEach(function(error) { %>
+                            <div class="alert alert-danger"><%= error.msg %></div>
+                        <% }); %>
+                    <% } %>
+                    
+                    <form action='/posts' method='POST' class = "add-post-form" name = "add-post-form">
                         <div class="form-group">
-                            <label for="title">Title</label>
-                            <input class="form-control" type="text" name="title" placeholder="Insert title here..." required></input>
+                            <label for="title">Title</label><span class ="required">*</span>
+                            <% if (locals.partialPost) { %>
+                                <input class="form-control" type="text" name="title" value="<%= partialPost.title %>"></input>
+                            <% } else { %>
+                                <input class="form-control" type="text" name="title" placeholder="Insert title here..."></input>
+                            <% } %>
+                            <span class="error" aria-live="polite"></span>
                         </div>
                         <div class="form-group">
-                            <label for="content">Main Image</label>
-                            <input class="form-control" type="text" name="image" placeholder="Insert image url here..." required></input>
+                            <label for="content">Main Image</label><span class ="required">*</span>
+                            <% if (locals.partialPost) { %>
+                                <input class="form-control" type="text" name="image" value ="<%= partialPost.image %>"></input>
+                            <% } else { %>
+                                <input class="form-control" type="text" name="image" placeholder="Insert image url here..."></input>
+                            <% } %>
                         </div>
                         <div class="form-group">
-                            <label for="content">Content</label>
-                            <textarea name="content" class="form-control" required></textarea>
+                            <label for="content">Content</label><span class ="required">*</span>
+                            <% if (locals.partialPost) { %>
+                                <textarea name="content" class="form-control" value = "<%= partialPost.content %>"></textarea>
+                            <% } else { %>
+                                <textarea name="content" class="form-control"></textarea>
+                            <% } %>
                         </div>
                         <div class="form-group">
-                            <label for="content">Categories</label>
-                            <textarea name="category" class="form-control" placeholder="Insert categories here, one on each line..." required></textarea>
+                            <label for="content">Categories</label><span class ="required">*</span>
+                            <% if (locals.partialPost) { %>
+                                <textarea name="category" class="form-control"><%= partialPost.category %></textarea>
+                            <% } else { %>
+                                <textarea name="category" class="form-control" placeholder="Insert categories here, one on each line..."></textarea>
+                            <% } %>
                         </div>
 
                         <div class="form-group newPostButton">
@@ -38,7 +61,7 @@
                             <button class="btn btn-md btn-success" formaction="/testPage2">Save Post</button>
                         </div>
                         <div class="form-group newPostButton">
-                            <button class="btn btn-md btn-danger">Publish Post</button>
+                            <button class="btn btn-md btn-danger" class = "submit-button">Publish Post</button>
                         </div>
 
                     </form>

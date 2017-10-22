@@ -32,14 +32,7 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Set the most common block elements.
 	config.format_tags = 'p;h1;h2;h3;pre';
-	
-	// Increase editor height
-	config.height = '20em';
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
-	
-	//Youtube settings
-	config.extraPlugins = 'youtube';
-
 };
