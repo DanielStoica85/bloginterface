@@ -55,7 +55,7 @@ $('.delete-post').on('click', function(e) {
     var id = $target.attr('data-id');
     $.ajax({
         type: 'DELETE',
-        url: '/post/delete/' + id,
+        url: '/posts/delete/' + id,
         success: function(response) {
             console.log(response);
             $target.closest('tr').remove();

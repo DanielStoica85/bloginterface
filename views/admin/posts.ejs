@@ -54,7 +54,7 @@
                                         <td><%- post.content.substring(0, 200) %></td>
                                         <td>October 15, 2017</td>
                                         <td class = "actions">
-                                            <a href = "/post/edit/<%= post._id %>"><button class="btn btn-primary btn-sm">Edit</button></a>
+                                            <a href = "/posts/edit/<%= post._id %>"><button class="btn btn-primary btn-sm">Edit</button></a>
                                             <!--html forms do not send DELETE request, cheat is used-->
                                             <!--<form action="/post/<%= post._id %>?_method=DELETE" method="POST">-->
                                                 <button class="btn btn-danger btn-sm delete-post" data-id = "<%= post._id %>">Delete</button>
