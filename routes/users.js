@@ -12,7 +12,7 @@ router.get('/register',(req, res) => {
 });
 
 router.post('/register', (req, res) => {
-    const name = req.body.name;
+    const username = req.body.username;
     const fname = req.body.fname;
     const lname = req.body.lname;
     const email = req.body.email;
@@ -21,7 +21,8 @@ router.post('/register', (req, res) => {
     const country = req.body.country;
     const city = req.body.city;
     
-    req.checkBody('name', 'Display Name is required.').notEmpty();
+    // Validation
+    req.checkBody('username', 'Username is required.').notEmpty();
     req.checkBody('fname', 'First Name is required.').notEmpty();
     req.checkBody('lname', 'Last Name is required.').notEmpty();
     req.checkBody('email', 'Email is required.').notEmpty();
@@ -36,7 +37,7 @@ router.post('/register', (req, res) => {
     }
     else {
         let newUser = new User({
-            name: name,
+            username: username,
             fname: fname,
             lname: lname,
             email: email,
@@ -70,7 +71,25 @@ router.post('/register', (req, res) => {
 
 // Login Form
 router.get('/login', function(req, res){
-  res.render('admin/login', {title: 'Login'});
+  res.render('admin/login', {title: 'Login', message: req.flash('loginMessage')});
 });
+
+// Login Process
+router.post('/login', passport.authenticate('local', {
+    successRedirect: '/admin',
+    failureRedirect: '/users/login'
+}), function(req, res) {
+    
+});
+
+router.get('/profile', (req, res) => {
+    res.render('admin/profile', {title: 'User Profile', user: req.user});
+});
+
+router.get('/logout', (req, res) => {
+    res.logout();
+    res.redirect('/');
+});
+
 
 module.exports = router;

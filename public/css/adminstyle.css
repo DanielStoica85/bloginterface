@@ -169,6 +169,10 @@ body {
     margin-top: 10px;
 }
 
+#login-form {
+    margin-top: 30px;
+}
+
 .colorgraph {
     height: 5px;
     border-top: 0;

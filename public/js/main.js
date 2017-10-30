@@ -59,7 +59,7 @@ $('.delete-post').on('click', function(e) {
         success: function(response) {
             console.log(response);
             $target.closest('tr').remove();
-            $('#messages').html('<div class = "alert alert-success">' + response.message + '</div>');
+            $('#flashes').html('<div class = "alert alert-success">' + response.message + '</div>');
         },
         error: function(err) {
             console.log(err);

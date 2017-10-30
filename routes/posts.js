@@ -125,13 +125,11 @@ router.put('/posts/:id', (req, res) => {
 router.delete('/posts/delete/:id', (req, res) => {
     Post.findByIdAndRemove(req.params.id, (err) => {
         if (err) {
-            console.log('Post not deleted!');
+            res.json({message: 'Post was not deleted because of database error. Please try again.'});
             console.log(err);
         }
         else {
-            console.log('Post with id ' + req.params.id + ' deleted!');
-            // req.flash('success', 'Post deleted!');
-            res.json({message: 'Post was deleted'});
+            res.json({message: 'Post was deleted!'});
         }
     });
 });

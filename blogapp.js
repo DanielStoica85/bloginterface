@@ -5,8 +5,16 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const morgan       = require('morgan');
+const cookieParser = require('cookie-parser');
+
+const config = require('./config/database');
+
 // Import Models
 let Post = require('./models/post');
+let User = require('./models/user');
 
 // Routes
 var postRoutes = require('./routes/posts');
@@ -37,7 +45,7 @@ app.use(function(req, res, next) {
 // ### DB CONNECTION ###
 
 // Connect to DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/blogapp_v1", { useMongoClient: true });
+mongoose.connect(process.env.MONGODB_URI || config.database, { useMongoClient: true });
 let db = mongoose.connection;
 
 // Check DB connection
@@ -56,26 +64,34 @@ app.set('view engine', 'ejs');
 
 // ### MIDDLEWARE ### 
 
+// Express Flash Messages Middleware
+
+app.use(flash()); // use connect-flash for flash messages stored in session
+
 // Express Session Middleware
 
 app.use(session({
-  secret: 'keyboard cat',
+  secret: 'keyboard cat' , // session secret
   resave: true,
   saveUninitialized: true
 }));
 
-// Express Flash Messages Middleware
 
-app.use(require('connect-flash')());
+app.use(morgan('dev')); // log every request to the console
+app.use(cookieParser()); // read cookies (needed for auth)
 
-app.use(function (req, res, next) {
-  res.locals.messages = require('express-messages')(req, res);
-  next();
+// middleware to send user to every route
+app.use(function(req, res, next) {
+    res.locals.error = req.flash('error');
+    res.locals.success = req.flash('success');
+    next();
 });
 
 // Express Validator Middleware
 
 app.use(expressValidator());
+
+
 
 // ### ROUTES ###
 
