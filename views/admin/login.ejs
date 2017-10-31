@@ -59,6 +59,11 @@
                             <div class="alert alert-danger"><%= error.msg %></div>
                         <% }); %>
                     <% } %>
+                    <% if(success && success.length > 0){ %>
+                        <div class="alert alert-success" role="alert">
+                            <%= success %>
+                        </div>
+                    <% } %>
 
                     
                     <form role="form" action="/users/login" method="POST">

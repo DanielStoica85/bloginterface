@@ -12,14 +12,17 @@ router.get('/register',(req, res) => {
 });
 
 router.post('/register', (req, res) => {
-    const username = req.body.username;
-    const fname = req.body.fname;
-    const lname = req.body.lname;
-    const email = req.body.email;
-    const password = req.body.password;
-    const password2 = req.body.password2;
-    const country = req.body.country;
-    const city = req.body.city;
+    let username = req.body.username;
+    let fname = req.body.fname;
+    let lname = req.body.lname;
+    let email = req.body.email;
+    let password = req.body.password;
+    let password2 = req.body.password2;
+    let country = req.body.country;
+    let city = req.body.city;
+    
+    console.log(req.body);
+    console.log(password);
     
     // Validation
     req.checkBody('username', 'Username is required.').notEmpty();
@@ -28,6 +31,7 @@ router.post('/register', (req, res) => {
     req.checkBody('email', 'Email is required.').notEmpty();
     req.checkBody('email', 'Email is not valid.').isEmail();
     req.checkBody('password', 'Password is required.').notEmpty();
+    req.checkBody('password', 'Password confirmation is required.').notEmpty();
     req.checkBody('password2', 'Passwords do not match.').equals(req.body.password);
     
     let errors = req.validationErrors();
@@ -36,7 +40,7 @@ router.post('/register', (req, res) => {
         res.render('admin/register', {errors: errors, title: 'Register new user'});
     }
     else {
-        let newUser = new User({
+        var newUser = new User({
             username: username,
             fname: fname,
             lname: lname,
@@ -46,24 +50,14 @@ router.post('/register', (req, res) => {
             country: country
         });
         
-        bcrypt.genSalt(10, (err, salt) => {
-            bcrypt.hash(newUser.password, salt, (err, hash) => {
-                if (err) {
-                    console.log(err);
-                }
-                else {
-                    newUser.password = hash;
-                    newUser.save((err) => {
-                        if (err) {
-                            console.log(err);
-                        }
-                        else {
-                            req.flash('success','You are now registered! Please login.');
-                            res.redirect('/users/login');
-                        }
-                    });
-                }
-            });
+        User.createUser(newUser, (err, user) => {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                req.flash('success', 'Congratulations! You are now a proud admin of this blog. Please login.');
+                res.redirect('/users/login');
+            }
         });
     }
     

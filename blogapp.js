@@ -68,19 +68,22 @@ app.set('view engine', 'ejs');
 
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-// Express Session Middleware
+// PASSPORT 
 
-app.use(session({
-  secret: 'keyboard cat' , // session secret
-  resave: true,
-  saveUninitialized: true
+// required for passport - Express Session Middleware
+app.use(session({ 
+    secret: 'blablabla',
+    resave: true,
+    saveUninitialized: true
 }));
 
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
 
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 
-// middleware to send user to every route
+// middleware to send global vars to every route
 app.use(function(req, res, next) {
     res.locals.error = req.flash('error');
     res.locals.success = req.flash('success');
@@ -90,8 +93,6 @@ app.use(function(req, res, next) {
 // Express Validator Middleware
 
 app.use(expressValidator());
-
-
 
 // ### ROUTES ###
 
