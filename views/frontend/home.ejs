@@ -15,7 +15,7 @@
                                 
                                 <h1><%= post.title %></h1>
                                 <p class="lead">
-                                    <i class="fa fa-user"></i> Posted by <span id="author"><%= post.author %></span>
+                                    <i class="fa fa-user"></i> Posted by <span id="author"><%= post.author.username %></span>
                                     <span class="pull-right"><i class="fa fa-calendar"></i> <%= moment(post.createdAt).fromNow() %></span>
                                 </p>
                                 

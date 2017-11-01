@@ -62,6 +62,7 @@ $('.delete-post').on('click', function(e) {
             $('#flashes').html('<div class = "alert alert-success">' + response.message + '</div>');
         },
         error: function(err) {
+            $('#flashes').html('<div class = "alert alert-danger">' + `You don't have permission to delete because you did not add this post.` + '</div>');
             console.log(err);
         }
     });

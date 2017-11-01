@@ -9,7 +9,13 @@ let postSchema = new Schema({
     image: {type: String, required: true},
     content: {type: String, required: true, minlength: 1},
     category: {type: String, required: true},
-    author: {type: String},
+    author: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        username: String
+    },
     createdAt: { type: Date, default: Date.now }
 });
 

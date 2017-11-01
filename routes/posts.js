@@ -35,7 +35,10 @@ router.post('/posts', middleware.isLoggedIn, (req, res) => {
         let title = req.body.title;
         let image = req.body.image;
         let content = req.body.content;
-        let author = req.user.username;
+        let author = {
+            id: req.user._id,
+            username: req.user.username
+        };
         let category = req.body.category;
         let newPost = { title: title, image: image, content: content, author: author, category: category };
         console.log(Post);
@@ -59,7 +62,7 @@ router.get('/posts/:id', (req, res) => {
 });
 
 // Load form for editing post
-router.get('/posts/edit/:id', middleware.isLoggedIn, (req, res) => {
+router.get('/posts/edit/:id', middleware.checkPostOwnership, (req, res) => {
     Post.getAll((allPosts) => {    
         Post.findById(req.params.id, (err, foundPost) => {
             if (err) {
@@ -76,7 +79,7 @@ router.get('/posts/edit/:id', middleware.isLoggedIn, (req, res) => {
 });
 
 // Update Post (after submitting form) route
-router.put('/posts/:id', middleware.isLoggedIn, (req, res) => {
+router.put('/posts/:id', middleware.checkPostOwnership, (req, res) => {
     
     req.checkBody('title', 'Title is required!').notEmpty();
     req.checkBody('image', 'Image URL is required!').notEmpty();
@@ -104,7 +107,10 @@ router.put('/posts/:id', middleware.isLoggedIn, (req, res) => {
         let title = req.body.title;
         let image = req.body.image;
         let content = req.body.content;
-        let author = req.body.author;
+        let author = {
+            id: req.user._id,
+            username: req.user.username
+        };
         let category = req.body.category;
         let newPost = { title: title, image: image, content: content, author: author, category: category };
         console.log(req.params.id);
@@ -115,7 +121,7 @@ router.put('/posts/:id', middleware.isLoggedIn, (req, res) => {
             else {
                 console.log(updatedPost);
                 req.flash('success_message', 'Post updated!');
-                res.redirect('/posts');
+                res.redirect('/admin/posts');
             }
         });
     }
@@ -125,7 +131,7 @@ router.put('/posts/:id', middleware.isLoggedIn, (req, res) => {
 });
 
 // Delete blog post route 
-router.delete('/posts/delete/:id', middleware.isLoggedIn, (req, res) => {
+router.delete('/posts/delete/:id', middleware.checkPostOwnership, (req, res) => {
     Post.findByIdAndRemove(req.params.id, (err) => {
         if (err) {
             res.json({message: 'Post was not deleted because of database error. Please try again.'});
