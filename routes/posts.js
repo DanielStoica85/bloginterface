@@ -37,7 +37,7 @@ router.post('/posts', (req, res) => {
         let newPost = { title: title, image: image, content: content, author: author, category: category };
         console.log(Post);
         Post.addPost(newPost, () => {
-            req.flash('success', 'Post was successfully added!');
+            req.flash('success_message', 'Post was successfully added!');
             res.redirect('/posts');
         }); 
     }
@@ -111,7 +111,7 @@ router.put('/posts/:id', (req, res) => {
             }
             else {
                 console.log(updatedPost);
-                req.flash('success', 'Post updated!');
+                req.flash('success_message', 'Post updated!');
                 res.redirect('/posts');
             }
         });

@@ -12,14 +12,14 @@
                 <div class="col-md-9">
                     
                     <div id="flashes">
-                        <% if(error && error.length > 0){ %>
+                        <% if(error_message && error_message.length > 0){ %>
                             <div class="alert alert-danger" role="alert">
-                                <%= error %>
+                                <%= error_message %>
                             </div>
                         <% } %>
-                        <% if(success && success.length > 0){ %>
+                        <% if(success_message && success_message.length > 0){ %>
                             <div class="alert alert-success" role="alert">
-                                <%= success %>
+                                <%= success_message %>
                             </div>
                         <% } %>
                     </div>

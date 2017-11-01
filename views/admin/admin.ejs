@@ -10,6 +10,15 @@
                 <!-- end of col-md-3 SIDEBAR -->
 
                 <div class="col-md-9">
+                    
+                    <div id="flashes">
+                        <% if(success_message && success_message.length > 0){ %>
+                            <div class="alert alert-success" role="alert">
+                                <%= success_message %>
+                            </div>
+                        <% } %>
+                    </div>
+                    
                     <!-- Blog Overview -->
                     <div class="panel panel-default">
                         <div class="panel-heading main-color-bg">

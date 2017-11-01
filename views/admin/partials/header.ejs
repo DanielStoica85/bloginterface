@@ -36,8 +36,13 @@
                     <li><a href="/users">Adminstrators</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/admin">Welcome, Bogdan!</a></li>
-                    <li><a href="#">Logout</a></li>
+                    <% if (!currentUser) { %>
+                        <li><a href="/users/login">Login</a></li>
+                        <li><a href="/users/register">Register</a></li>
+                    <% } else { %>
+                        <li><a href="/admin">Welcome, <%= currentUser.username %>!</a></li>
+                        <li><a href="/users/logout">Logout</a></li>
+                    <% } %>
                 </ul>
 
             </div>

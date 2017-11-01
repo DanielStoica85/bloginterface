@@ -80,13 +80,16 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
+
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 
 // middleware to send global vars to every route
 app.use(function(req, res, next) {
+    res.locals.error_message = req.flash('error_message');
+    res.locals.success_message = req.flash('success_message');
     res.locals.error = req.flash('error');
-    res.locals.success = req.flash('success');
+    res.locals.currentUser = req.user;
     next();
 });
 
@@ -104,7 +107,7 @@ app.get('/', (req, res) => {
 });
 
 // Admin Route
-app.get('/admin', (req, res) => {
+app.get('/admin', isLoggedIn, (req, res) => {
     Post.find({}, (err, allPosts) => {
         if (err) {
             console.log(err);
@@ -121,11 +124,6 @@ app.get('/admin/users', (req, res) => {
     res.render('admin/users', { title: 'Users' });
 });
 
-// Show login form
-app.get('/admin/login', (req, res) => {
-    res.render('admin/login', { title: 'Login' });
-});
-
 // Add user route
 app.get('/users/new', (req, res) => {
     res.render('admin/newUser', { title: 'Add User' });
@@ -140,3 +138,13 @@ app.use('/users', userRoutes);
 app.listen(process.env.PORT, process.env.IP, () => {
     console.log('Server started on port ' + process.env.PORT + '.');
 });
+
+// MIDDLEWARE HERE FOR NOW
+function isLoggedIn (req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    else {
+        res.redirect('users/login');
+    }
+}

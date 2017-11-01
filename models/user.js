@@ -35,7 +35,7 @@ const UserSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('User', UserSchema);
+let User = module.exports = mongoose.model('User', UserSchema);
 
 // METHODS
 
@@ -59,3 +59,23 @@ module.exports.createUser = function (newUser, callback) {
         }
     });
 };
+
+module.exports.findUserByUsername = function(username, callback) {
+    User.findOne({username: username}, callback);
+};
+
+module.exports.getUserById = function(id, callback){
+    User.findById(id, callback);
+};
+
+module.exports.comparePassword = function(enteredPassword, hash, callback) {
+    bcrypt.compare(enteredPassword, hash, function(err, isAMatch) {
+        if (err) {
+            throw err;
+        }
+        else {
+            callback(null, isAMatch);
+        }
+    }); 
+};
+
