@@ -4,6 +4,8 @@ const router = express.Router();
 // Import Models
 let Post = require('../models/post');
 
+let middleware = require('../middleware/index.js');
+
 // Show form to add new Post
 router.get('/posts/new', (req, res) => {
     // res.locals.containsEditor = true;
@@ -13,7 +15,7 @@ router.get('/posts/new', (req, res) => {
 });
 
 // Add new Post (after submitting form) route
-router.post('/posts', (req, res) => {
+router.post('/posts', middleware.isLoggedIn, (req, res) => {
     
     req.checkBody('title', 'Title is required!').notEmpty();
     req.checkBody('image', 'Image URL is required!').notEmpty();
@@ -29,16 +31,17 @@ router.post('/posts', (req, res) => {
         });
     }
     else {
+        console.log(req.user);
         let title = req.body.title;
         let image = req.body.image;
         let content = req.body.content;
-        let author = req.body.author;
+        let author = req.user.username;
         let category = req.body.category;
         let newPost = { title: title, image: image, content: content, author: author, category: category };
         console.log(Post);
         Post.addPost(newPost, () => {
             req.flash('success_message', 'Post was successfully added!');
-            res.redirect('/posts');
+            res.redirect('admin/posts');
         }); 
     }
 });
@@ -56,7 +59,7 @@ router.get('/posts/:id', (req, res) => {
 });
 
 // Load form for editing post
-router.get('/posts/edit/:id', (req, res) => {
+router.get('/posts/edit/:id', middleware.isLoggedIn, (req, res) => {
     Post.getAll((allPosts) => {    
         Post.findById(req.params.id, (err, foundPost) => {
             if (err) {
@@ -73,7 +76,7 @@ router.get('/posts/edit/:id', (req, res) => {
 });
 
 // Update Post (after submitting form) route
-router.put('/posts/:id', (req, res) => {
+router.put('/posts/:id', middleware.isLoggedIn, (req, res) => {
     
     req.checkBody('title', 'Title is required!').notEmpty();
     req.checkBody('image', 'Image URL is required!').notEmpty();
@@ -122,7 +125,7 @@ router.put('/posts/:id', (req, res) => {
 });
 
 // Delete blog post route 
-router.delete('/posts/delete/:id', (req, res) => {
+router.delete('/posts/delete/:id', middleware.isLoggedIn, (req, res) => {
     Post.findByIdAndRemove(req.params.id, (err) => {
         if (err) {
             res.json({message: 'Post was not deleted because of database error. Please try again.'});
@@ -135,7 +138,7 @@ router.delete('/posts/delete/:id', (req, res) => {
 });
 
 // Show list of posts
-router.get('/posts', (req, res) => {
+router.get('/admin/posts', middleware.isLoggedIn, (req, res) => {
     Post.find({}, (err, allPosts) => {
         if (err) {
             console.log(err);

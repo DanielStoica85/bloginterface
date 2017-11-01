@@ -1,20 +1,5 @@
 <% include ./partials/header %>
 
-    <!--<ul class = "list-group">-->
-    <!--    <% posts.forEach(function(post) { %>-->
-    <!--        <li class = "list-group-item">-->
-    <!--            <a href = "/post/<%= post._id %>">-->
-    <!--                <%= post.title %> -->
-    <!--            </a>-->
-    <!--        </li>-->
-    <!--    <% }); %>-->
-    <!--</ul>-->
-
-
-    <!--<form action = "admin/login" method = "GET" >-->
-    <!--    <button class = "btn btn-lg btn-primary">Login</button>-->
-    <!--</form>-->
-
     <section id="main">
 
         <div class="container-fluid">
@@ -31,10 +16,18 @@
                                 <h1><%= post.title %></h1>
                                 <p class="lead">
                                     <i class="fa fa-user"></i> Posted by <span id="author"><%= post.author %></span>
-                                    <span class="pull-right"><i class="fa fa-calendar"></i> August 24, 2017</span>
+                                    <span class="pull-right"><i class="fa fa-calendar"></i> <%= moment(post.createdAt).fromNow() %></span>
                                 </p>
-                                <p><%- post.content.substring(0, 500) %></p>
-                                <a href = "/post/<%= post._id %>" class = "btn btn-lg">Read more...</a>
+                                
+                                <div class="post-preview">
+                                    <%- post.content.substring(0, 500) %>...
+                                </div>
+                                
+                                <div class="post-links">
+                                    <a href = "/posts/<%= post._id %>" class = "btn btn-lg">Read more...</a>
+                                    <p class="comments pull-right"><i class="fa fa-comment"></i> Comments</p>
+                                </div>
+                                
                                 
                             </article>
                         

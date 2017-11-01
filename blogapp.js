@@ -21,6 +21,8 @@ var postRoutes = require('./routes/posts');
 var pageRoutes = require('./routes/pages');
 var userRoutes = require('./routes/users');
 
+let middleware = require('./middleware/index.js');
+
 // Initiate app
 const app = express();
 
@@ -63,6 +65,9 @@ db.on('error', (err) => {
 app.set('view engine', 'ejs');
 
 // ### MIDDLEWARE ### 
+
+// Moment js - for showing dates/times
+app.locals.moment = require('moment');
 
 // Express Flash Messages Middleware
 
@@ -107,7 +112,7 @@ app.get('/', (req, res) => {
 });
 
 // Admin Route
-app.get('/admin', isLoggedIn, (req, res) => {
+app.get('/admin', middleware.isLoggedIn, (req, res) => {
     Post.find({}, (err, allPosts) => {
         if (err) {
             console.log(err);
@@ -139,12 +144,4 @@ app.listen(process.env.PORT, process.env.IP, () => {
     console.log('Server started on port ' + process.env.PORT + '.');
 });
 
-// MIDDLEWARE HERE FOR NOW
-function isLoggedIn (req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    else {
-        res.redirect('users/login');
-    }
-}
+

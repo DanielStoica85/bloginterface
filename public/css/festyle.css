@@ -358,3 +358,13 @@ body {
    padding: 0;
    margin: 5px;
 }
+
+.post-preview {
+   margin-bottom: 1.5em;
+}
+
+.comments {
+    font-size: 18px;
+    line-height: 1.3333333;
+    padding: 10px 16px;
+}

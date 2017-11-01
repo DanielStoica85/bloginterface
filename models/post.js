@@ -9,7 +9,8 @@ let postSchema = new Schema({
     image: {type: String, required: true},
     content: {type: String, required: true, minlength: 1},
     category: {type: String, required: true},
-    author: {type: String, default: 'Daniel'}
+    author: {type: String},
+    createdAt: { type: Date, default: Date.now }
 });
 
 postSchema.statics.addPost = function (newPost, callback) {
